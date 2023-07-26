@@ -1,14 +1,10 @@
 import { Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import ProductScreen from './src/screens/ProductScreen';
-import ProductDetailsScreen from './src/screens/ProductDetailsScreen';
-import ShoppingCart from './src/screens/ShoppingCart';
+import Navigation from './src/navigation';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      {/* <ProductScreen /> */}
-      {/* <ProductDetailsScreen /> */}
-      <ShoppingCart />
+      <Navigation />
     </SafeAreaView>
   );
 }
