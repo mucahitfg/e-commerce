@@ -5,6 +5,7 @@ import { FlatList, View, Image, StyleSheet, useWindowDimensions, Text, ScrollVie
 const ProductDetailsScreen = () => {
     const product = products[0];
     const { width } = useWindowDimensions();
+    
     function addToCart() {
         Alert.alert('Item added.')
     }
