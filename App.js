@@ -1,11 +1,14 @@
 import { Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import Navigation from './src/navigation';
-
+import { store } from './src/store';
+import { Provider } from 'react-redux';
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <Navigation />
-    </SafeAreaView>
+    <Provider store={store} >
+      <SafeAreaView style={styles.container}>
+        <Navigation />
+      </SafeAreaView>
+    </Provider>
   );
 }
 
@@ -14,5 +17,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  
+
 });

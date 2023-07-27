@@ -1,10 +1,13 @@
 import React from "react";
 import products from "../data/products";
 import { FlatList, View, Image, StyleSheet, useWindowDimensions, Text, ScrollView, Pressable, Alert } from "react-native";
+import {useSelector} from 'react-redux'
+
 
 const ProductDetailsScreen = () => {
-    const product = products[0];
+
     const { width } = useWindowDimensions();
+    const product = useSelector((state) => state.products.selectedProduct)
     
     function addToCart() {
         Alert.alert('Item added.')
