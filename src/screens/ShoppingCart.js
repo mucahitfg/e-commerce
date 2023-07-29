@@ -1,28 +1,34 @@
 import React from "react";
 import { FlatList, StyleSheet, Text, View, Pressable } from "react-native";
 import CartListItem from "../components/CartListItem";
-import cart from "../data/cart";
+import { useSelector } from 'react-redux';
+import { selectDeliveryPrice, selectSubTotal, selectTotalPrice } from "../store/cartSlice";
 
 const ShoppingCartTotal = () => {
+    const subTotal = useSelector(selectSubTotal)
+    const delivery = useSelector(selectDeliveryPrice)
+    const totalPrice = useSelector(selectTotalPrice)
     return (
         <View style={styles.textContainer} >
             <View style={styles.itemsRow}>
-                <Text style={styles.text} >Subtotal</Text>
-                <Text style={styles.text}>410 US$</Text>
+                <Text style={styles.text}>Subtotal</Text>
+                <Text style={styles.text}>{subTotal} US$</Text>
             </View>
             <View style={styles.itemsRow}>
                 <Text style={styles.text}>Delivery</Text>
-                <Text style={styles.text}>10 US$</Text>
+                <Text style={styles.text}>{delivery} US$</Text>
             </View>
             <View style={styles.itemsRow}>
                 <Text style={styles.textBold}>Total</Text>
-                <Text style={styles.textBold}>420 US$</Text>
+                <Text style={styles.textBold}>{totalPrice} US$</Text>
             </View>
         </View>
     )
 }
 
 const ShoppingCart = () => {
+    const cart = useSelector((state) => state.carts.items)
+
     return (
         <>
             <FlatList

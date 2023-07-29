@@ -1,16 +1,17 @@
 import React from "react";
-import products from "../data/products";
-import { FlatList, View, Image, StyleSheet, useWindowDimensions, Text, ScrollView, Pressable, Alert } from "react-native";
-import {useSelector} from 'react-redux'
+import { FlatList, View, Image, StyleSheet, useWindowDimensions, Text, ScrollView, Pressable, TouchableOpacity } from "react-native";
+import { useSelector, useDispatch } from 'react-redux'
+import { cartSlice } from "../store/cartSlice";
 
 
 const ProductDetailsScreen = () => {
 
     const { width } = useWindowDimensions();
     const product = useSelector((state) => state.products.selectedProduct)
-    
+    const dispatch = useDispatch()
+
     function addToCart() {
-        Alert.alert('Item added.')
+        dispatch(cartSlice.actions.AddCartItem({product}))
     }
 
     return (
@@ -29,9 +30,9 @@ const ProductDetailsScreen = () => {
                     <Text style={styles.description}>{product.description}</Text>
                 </View>
             </ScrollView>
-            <Pressable onPress={addToCart} style={styles.button}>
+            <TouchableOpacity onPress={addToCart} style={styles.button} activeOpacity={0.7}>
                 <Text style={styles.buttonText}>Add to cart</Text>
-            </Pressable>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -58,20 +59,20 @@ const styles = StyleSheet.create({
         fontSize: 18,
         lineHeight: 30
     },
-    button:{
-        backgroundColor:'black',
-        width:'90%',
-        padding:18,
-        borderRadius:30,
-        position:'absolute',
-        bottom:30,
-        alignSelf:'center',
-        alignItems:'center',
+    button: {
+        backgroundColor: 'black',
+        width: '90%',
+        padding: 18,
+        borderRadius: 30,
+        position: 'absolute',
+        bottom: 30,
+        alignSelf: 'center',
+        alignItems: 'center',
     },
-    buttonText:{
-        fontSize:16,
-        fontWeight:'500',
-        color:'white',
-        textAlign:'center'
+    buttonText: {
+        fontSize: 16,
+        fontWeight: '500',
+        color: 'white',
+        textAlign: 'center'
     },
 })
